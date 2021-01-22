@@ -15,3 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [StudentController::class, 'index']);
+Route::get('/create', [StudentController::class, 'create']);
+Route::post('/', [StudentController::class, 'store']);
+Route::get('/edit/{student}', [StudentController::class, 'edit']);
+Route::match(['put', 'patch'], '/update/{student}', [StudentController::class, 'update']);
+Route::delete('/{student}', [StudentController::class, 'destroy']);
