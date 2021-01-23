@@ -30,11 +30,19 @@
                         <td>{{ $student->phone }}</td>
                         <td>{{ $student->address }}</td>
                         <td>{{ $student->email }}</td>
-                        <td> <a href="{{ url('/edit/' . $student->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a> <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+                        <td> <a href="{{ url('/edit/' . $student->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a> <a href="#" class="btn btn-danger btn-sm" onClick="if(confirm('Are you sure want to delete?')) {
+                            event.preventDefault();
+                            document.getElementById('delete').submit();
+                        }"><i class="fas fa-trash"></i></a></td>
+                        <form action="{{ url('/' . $student->id) }}" method="POST" id="delete">
+                            @csrf
+                            @method('delete')
+                        </form>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        {{ $students->links() }}
     </div>
 
 @endsection
